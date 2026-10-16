@@ -1,4 +1,4 @@
-package com.example.note.repository;
+package com.example.note.feature.note;
 
 import java.util.List;
 

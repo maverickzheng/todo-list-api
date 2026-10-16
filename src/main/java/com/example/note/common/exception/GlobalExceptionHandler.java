@@ -1,4 +1,4 @@
-package com.example.note.exception;
+package com.example.note.common.exception;
 
 import java.util.*;
 
@@ -13,7 +13,7 @@ import org.springframework.web.context.request.*;
 import org.springframework.web.method.annotation.*;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
-import com.example.note.dto.GenericAPIResponse;
+import com.example.note.common.GenericAPIResponse;
 
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.servlet.http.HttpServletRequest;

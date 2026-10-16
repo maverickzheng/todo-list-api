@@ -1,12 +1,12 @@
-package com.example.note.service;
+package com.example.note.feature.note;
 
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.example.note.dto.NoteDTO;
-import com.example.note.model.Note;
+import com.example.note.feature.note.NoteDTO;
+import com.example.note.feature.note.Note;
 
 /*
  * 參考資料：

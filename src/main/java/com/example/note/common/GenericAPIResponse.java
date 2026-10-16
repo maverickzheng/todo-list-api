@@ -1,4 +1,4 @@
-package com.example.note.dto;
+package com.example.note.common;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

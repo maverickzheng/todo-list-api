@@ -1,4 +1,4 @@
-package com.example.note.service;
+package com.example.note.feature.note;
 
 import java.util.List;
 import java.util.Objects;
@@ -8,10 +8,10 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.note.dto.NoteDTO;
-import com.example.note.exception.ResourceNotFoundException;
-import com.example.note.model.Note;
-import com.example.note.repository.NoteRepository;
+import com.example.note.feature.note.NoteDTO;
+import com.example.note.common.exception.ResourceNotFoundException;
+import com.example.note.feature.note.Note;
+import com.example.note.feature.note.NoteRepository;
 
 import lombok.extern.slf4j.Slf4j;
 

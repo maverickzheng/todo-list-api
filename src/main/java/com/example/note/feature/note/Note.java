@@ -1,4 +1,4 @@
-package com.example.note.model;
+package com.example.note.feature.note;
 
 import java.time.LocalDateTime;
 

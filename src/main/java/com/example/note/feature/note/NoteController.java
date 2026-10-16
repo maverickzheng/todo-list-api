@@ -1,4 +1,4 @@
-package com.example.note.controller;
+package com.example.note.feature.note;
 
 import java.net.URI;
 import java.util.List;
@@ -14,10 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.note.dto.GenericAPIResponse;
-import com.example.note.dto.NoteDTO;
-import com.example.note.model.Note;
-import com.example.note.service.NoteService;
+import com.example.note.common.GenericAPIResponse;
+import com.example.note.feature.note.NoteDTO;
+import com.example.note.feature.note.Note;
+import com.example.note.feature.note.NoteService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

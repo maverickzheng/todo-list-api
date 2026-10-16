@@ -1,4 +1,4 @@
-package com.example.note.dto;
+package com.example.note.feature.note;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
