@@ -28,7 +28,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
 // @PreAuthorize("hasRole('ADMIN')") // 控制訪問權限
-@Tag(name = "Note API", description = "代辦事項 API 說明")
+@Tag(name = "Note API", description = "待辦事項 API 說明")
 @RestController
 @RequestMapping("/api/notes")
 public class NoteController {
@@ -73,7 +73,7 @@ public class NoteController {
                         """;
 
         @GetMapping
-        @Operation(summary = "顯示所有代辦事項", description = "", responses = {
+        @Operation(summary = "顯示所有待辦事項", description = "", responses = {
                         @ApiResponse(responseCode = "200", description = "Successfully obtained all notes!", content = @Content),
                         @ApiResponse(responseCode = "404", description = "Note not found.", content = @Content)
         })
@@ -85,11 +85,11 @@ public class NoteController {
 
                 Page<Note> notes = noteService.getAllNotes(PageRequest.of(page, size, Sort.by(direction, order.label)));
 
-                return ResponseEntity.ok(GenericAPIResponse.success(200, "成功取得所有代辦事項。", notes));
+                return ResponseEntity.ok(GenericAPIResponse.success(200, "成功取得所有待辦事項。", notes));
         }
 
         @GetMapping("/{id}")
-        @Operation(summary = "顯示代辦事項", description = "透過ID查詢代辦事項", responses = {
+        @Operation(summary = "顯示待辦事項", description = "透過ID查詢待辦事項", responses = {
                         @ApiResponse(responseCode = "200", description = "Successfully obtained note!", content = @Content),
                         @ApiResponse(responseCode = "404", description = "Note not found.", content = @Content(examples = @ExampleObject(value = noteNotFoundExample)))
         })
@@ -98,19 +98,19 @@ public class NoteController {
 
                 Note note = noteService.getNoteById(id);
 
-                return ResponseEntity.ok(GenericAPIResponse.success(200, "成功取得代辦事項。",
+                return ResponseEntity.ok(GenericAPIResponse.success(200, "成功取得待辦事項。",
                                 note));
 
         }
 
         @PostMapping
-        @Operation(summary = "新增代辦事項", description = "", responses = {
+        @Operation(summary = "新增待辦事項", description = "", responses = {
                         @ApiResponse(responseCode = "201", description = "Note created successfully!", content = @Content(examples = @ExampleObject(value = """
                                         {
                                                 "success": true,
                                                 "statusCode": 201,
                                                 "time": "2000-01-01 00:00:00 TST",
-                                                "message": "成功建立代辦事項",
+                                                "message": "成功建立待辦事項",
                                                 "data":  {
                                                         "title": "Title",
                                                         "description": "Description",
@@ -130,11 +130,11 @@ public class NoteController {
                                 .path("/{id}").buildAndExpand(newnote.getNoteId())
                                 .toUri();
 
-                return ResponseEntity.created(location).body(GenericAPIResponse.success(201, "成功建立代辦事項。", newnote));
+                return ResponseEntity.created(location).body(GenericAPIResponse.success(201, "成功建立待辦事項。", newnote));
         }
 
         @PutMapping("/{id}")
-        @Operation(summary = "更新代辦事項", description = "", responses = {
+        @Operation(summary = "更新待辦事項", description = "", responses = {
                         @ApiResponse(responseCode = "204", description = "Note update successfully!", content = @Content),
                         @ApiResponse(responseCode = "404", description = "Note not found.", content = @Content)
         })
@@ -145,12 +145,12 @@ public class NoteController {
                 noteService.updateNote(id, renewNoteDTO);
 
                 return ResponseEntity.status(HttpStatus.OK)
-                                .body(GenericAPIResponse.success(204, "成功更新代辦事項。", null));
+                                .body(GenericAPIResponse.success(204, "成功更新待辦事項。", null));
 
         }
 
         @DeleteMapping("/{id}")
-        @Operation(summary = "刪除代辦事項", description = "", responses = {
+        @Operation(summary = "刪除待辦事項", description = "", responses = {
                         @ApiResponse(responseCode = "204", description = "Note delete successfully!", content = @Content),
                         @ApiResponse(responseCode = "404", description = "Note not found.", content = @Content)
         })
@@ -158,13 +158,13 @@ public class NoteController {
                         @Parameter(description = "ID of note.") @PathVariable("id") Long id) {
                 noteService.deleteNote(id);
                 return ResponseEntity.status(HttpStatus.OK)
-                                .body(GenericAPIResponse.success(204, "成功刪除代辦事項。", null));
+                                .body(GenericAPIResponse.success(204, "成功刪除待辦事項。", null));
 
         }
         /*
          * @GetMapping("/search/notcompleted")
          * 
-         * @Operation(summary = "列出未完成代辦事項", description = "列出未完成代辦事項，並按建立時間遞增或遞減排序",
+         * @Operation(summary = "列出未完成待辦事項", description = "列出未完成待辦事項，並按建立時間遞增或遞減排序",
          * responses = {
          * 
          * @ApiResponse(responseCode = "200", description = "Successfully obtained
@@ -180,13 +180,13 @@ public class NoteController {
          * boolean order) {
          * Page<Note> notes = noteService.notCompleted(order);
          * return ResponseEntity.status(HttpStatus.OK)
-         * .body(GenericAPIResponse.success(200, "成功取得代辦事項。", notes));
+         * .body(GenericAPIResponse.success(200, "成功取得待辦事項。", notes));
          * 
          * }
          */
 
         @GetMapping("/search/notcompleted")
-        @Operation(summary = "未完成代辦事項", description = "列出未完成代辦事項", responses = {
+        @Operation(summary = "未完成待辦事項", description = "列出未完成待辦事項", responses = {
                         @ApiResponse(responseCode = "200", description = "Successfully obtained note!", content = @Content),
                         @ApiResponse(responseCode = "404", description = "Note not found.", content = @Content)
         })
@@ -196,12 +196,12 @@ public class NoteController {
                         @RequestParam(value = "order", defaultValue = "CreatedTime") Orders order) {
                 Page<Note> notes = noteService.searchNotCompleted(increment, page, order.label);
                 return ResponseEntity.status(HttpStatus.OK)
-                                .body(GenericAPIResponse.success(200, "成功取得代辦事項。", notes));
+                                .body(GenericAPIResponse.success(200, "成功取得待辦事項。", notes));
 
         }
 
         @GetMapping("/search/title")
-        @Operation(summary = "以標題尋找代辦事項", description = "透過標題尋找代辦事項", responses = {
+        @Operation(summary = "以標題尋找待辦事項", description = "透過標題尋找待辦事項", responses = {
                         @ApiResponse(responseCode = "200", description = "Successfully obtained note!", content = @Content),
                         @ApiResponse(responseCode = "404", description = "Note not found.", content = @Content)
         })
@@ -214,12 +214,12 @@ public class NoteController {
 
                 Page<Note> notes = noteService.searchNotesByTitle(title, increment, page, order.label);
                 return ResponseEntity.status(HttpStatus.OK)
-                                .body(GenericAPIResponse.success(200, "成功取得代辦事項。", notes));
+                                .body(GenericAPIResponse.success(200, "成功取得待辦事項。", notes));
 
         }
 
         @GetMapping("/search/exact")
-        @Operation(summary = "精確搜尋代辦事項", description = "透過標題和內容尋找代辦事項，並按建立時間遞增或是遞減排序", responses = {
+        @Operation(summary = "精確搜尋待辦事項", description = "透過標題和內容尋找待辦事項，並按建立時間遞增或是遞減排序", responses = {
                         @ApiResponse(responseCode = "200", description = "Successfully obtained note!", content = @Content),
                         @ApiResponse(responseCode = "404", description = "Note not found.", content = @Content)
         })
@@ -230,7 +230,7 @@ public class NoteController {
 
                 List<Note> notes = noteService.searchExact(title, content, increment);
                 return ResponseEntity.status(HttpStatus.OK)
-                                .body(GenericAPIResponse.success(200, "成功取得代辦事項。", notes));
+                                .body(GenericAPIResponse.success(200, "成功取得待辦事項。", notes));
 
         }
 

@@ -7,18 +7,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.note.model.Note;
+import com.example.note.feature.note.Note;
 
 @Repository
 public interface NoteRepository extends JpaRepository<Note, Long> {
 
-        // 查詢未完成代辦事項
+        // 查詢未完成待辦事項
         Page<Note> findByStatusFalse(Pageable pageable);
 
-        // 查詢未完成代辦事項，按建立時間遞增排序
+        // 查詢未完成待辦事項，按建立時間遞增排序
         List<Note> findByStatusFalseOrderByCreatedTimeAsc();
 
-        // 查詢未完成代辦事項，按建立時間遞減排序
+        // 查詢未完成待辦事項，按建立時間遞減排序
         List<Note> findByStatusFalseOrderByCreatedTimeDesc();
 
         // 查詢符合部分 title 字詞，不分大小寫( Contains 和 Containing 無任何差異)

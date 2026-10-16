@@ -73,7 +73,7 @@ public class NoteServiceImpl implements NoteService {
     @Transactional(readOnly = true)
     public Note getNoteById(Long id) {
         return noteRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(
-                String.format("查無 ID 為 %d 的代辦事項！", id)));
+                String.format("查無 ID 為 %d 的待辦事項！", id)));
     }
 
     @Override
@@ -96,7 +96,7 @@ public class NoteServiceImpl implements NoteService {
      * 
      * Note existingNote = noteRepository.findById(id).orElseThrow(() -> new
      * ResourceNotFoundException(
-     * String.format("查無 ID 為 %d 的代辦事項，故無法更新！", id)));
+     * String.format("查無 ID 為 %d 的待辦事項，故無法更新！", id)));
      * 
      * if (renewNote.getTitle() != null) {
      * existingNote.setTitle(renewNote.getTitle());
@@ -117,7 +117,7 @@ public class NoteServiceImpl implements NoteService {
     public void updateNote(Long id, NoteDTO renewNoteDTO) {
 
         Note existingNote = noteRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(
-                String.format("查無 ID 為 %d 的代辦事項，故無法更新！", id)));
+                String.format("查無 ID 為 %d 的待辦事項，故無法更新！", id)));
 
         if (renewNoteDTO.getTitle() != null) {
             existingNote.setTitle(renewNoteDTO.getTitle());
@@ -135,7 +135,7 @@ public class NoteServiceImpl implements NoteService {
     @Transactional
     public void deleteNote(Long id) {
         noteRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(
-                String.format("查無 ID 為 %d 的代辦事項，故無法刪除！", id)));
+                String.format("查無 ID 為 %d 的待辦事項，故無法刪除！", id)));
 
         noteRepository.deleteById(id);
     }
@@ -147,7 +147,7 @@ public class NoteServiceImpl implements NoteService {
         pageable = buildPageable(page, pageSize, increment, orderBy);
 
         notes = noteRepository.findByStatusFalse(pageable);
-        String massage = "查無任何未完成的代辦事項！";
+        String massage = "查無任何未完成的待辦事項！";
 
         return handleNotesResult(notes, massage);
 
@@ -161,7 +161,7 @@ public class NoteServiceImpl implements NoteService {
 
         notes = noteRepository.findByTitleContainsIgnoreCase(title, pageable);
 
-        String massage = String.format("查無任何標題有包含「 %s 」代辦事項！", title);
+        String massage = String.format("查無任何標題有包含「 %s 」待辦事項！", title);
         return handleNotesResult(notes, massage);
 
     }
@@ -181,7 +181,7 @@ public class NoteServiceImpl implements NoteService {
         }
 
         if (notes.isEmpty()) {
-            throw new ResourceNotFoundException(String.format("查無任何標題包含「%s」和內容包含「%s」代辦事項！", title, content));
+            throw new ResourceNotFoundException(String.format("查無任何標題包含「%s」和內容包含「%s」待辦事項！", title, content));
         } else {
             return notes;
         }

@@ -29,7 +29,7 @@ public interface NoteService {
 
     void deleteNote(Long id);
 
-    // 未完成代辦事項
+    // 未完成待辦事項
     // List<Note> notCompleted(boolean order);
 
     Page<Note> searchNotCompleted(boolean increment, int page, String orderBy);
