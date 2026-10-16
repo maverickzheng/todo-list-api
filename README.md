@@ -2,7 +2,7 @@
 
 ## 專案簡介
 
-這是一個基於 Spring Boot 建構的簡單代辦事項（Todo List）後端服務。專案提供一組 RESTful API，用於管理代辦事項的建立、讀取、更新和刪除 (CRUD) 操作。
+這是一個基於 Spring Boot 建構的簡單待辦事項（Todo List）後端服務。專案提供一組 RESTful API，用於管理待辦事項的建立、讀取、更新和刪除 (CRUD) 操作。
 
 
 專案的設計考量旨在提供一個清晰、高效且易於維護的基礎服務，主要特性和設計理念如下：
@@ -27,12 +27,12 @@
 
 ## 功能特色
 
-* **代辦事項 CRUD 操作：** 提供完整的代辦事項建立 (`POST`)、讀取所有/單一代辦事項 (`GET`)、更新 (`PUT`) 和刪除 (`DELETE`) 等核心 API 功能。
-* **分頁與排序：** 查詢所有代辦事項時，支援靈活的分頁 (`page`, `size`) 和根據指定欄位（如 `title`、`content`、`createdTime`、`updatedTime`）進行升序或降序 (`increment`) 排序。
+* **待辦事項 CRUD 操作：** 提供完整的待辦事項建立 (`POST`)、讀取所有/單一待辦事項 (`GET`)、更新 (`PUT`) 和刪除 (`DELETE`) 等核心 API 功能。
+* **分頁與排序：** 查詢所有待辦事項時，支援靈活的分頁 (`page`, `size`) 和根據指定欄位（如 `title`、`content`、`createdTime`、`updatedTime`）進行升序或降序 (`increment`) 排序。
 * **條件搜尋：** 提供兩種搜尋模式：
     * 根據標題進行模糊搜尋 (`/search/title`)，支援不區分大小寫。
     * 根據標題和內容進行精確搜尋 (`/search/exact`)。
-* **未完成事項篩選：** 專門提供了查詢所有未完成代辦事項的 API (`/search/notcompleted`)，同樣支援分頁和排序。
+* **未完成事項篩選：** 專門提供了查詢所有未完成待辦事項的 API (`/search/notcompleted`)，同樣支援分頁和排序。
 * **統一回應格式：** 所有 API 回應均採用 `GenericAPIResponse` 包裝，包含 `success` 狀態、`statusCode`、`message`、`time` (時間戳記)，以及實際的 `data` 或 `errorDetail`。
 * **資料驗證：** 利用 Jakarta Validation 規範，對輸入的 `NoteDTO` 資料進行了嚴格的驗證（例如：`@NotBlank`、`@Size`），確保資料的有效性和完整性。
 * **全域錯誤處理：** 程式透過 `GlobalExceptionHandler` 捕獲並處理多種常見錯誤，如請求參數驗證失敗 (`MethodArgumentNotValidException`) 或資源未找到 (`ResourceNotFoundException`)，並以統一的錯誤格式回應。
@@ -80,14 +80,14 @@ http://localhost:8080/swagger-ui.html
 
 以下列出本服務主要提供的 API 端點概覽。更多詳細的參數說明和回應範例，請務必參考上述的 Swagger UI 文件。
 
-* `GET /api/notes`：取得所有代辦事項 (支援分頁和排序)
-* `GET /api/notes/{id}`：根據 ID 取得代辦事項
-* `POST /api/notes`：新增代辦事項
-* `PUT /api/notes/{id}`：更新指定ID的代辦事項
-* `DELETE /api/notes/{id}`：刪除指定ID的代辦事項
-* `GET /api/notes/search/notcompleted`：取得未完成代辦事項 (支援分頁排序)
-* `GET /api/notes/search/title`：根據標題搜尋代辦事項 (支援分頁排序)
-* `GET /api/notes/search/exact`：根據標題和內容精確搜尋代辦事項
+* `GET /api/notes`：取得所有待辦事項 (支援分頁和排序)
+* `GET /api/notes/{id}`：根據 ID 取得待辦事項
+* `POST /api/notes`：新增待辦事項
+* `PUT /api/notes/{id}`：更新指定ID的待辦事項
+* `DELETE /api/notes/{id}`：刪除指定ID的待辦事項
+* `GET /api/notes/search/notcompleted`：取得未完成待辦事項 (支援分頁排序)
+* `GET /api/notes/search/title`：根據標題搜尋待辦事項 (支援分頁排序)
+* `GET /api/notes/search/exact`：根據標題和內容精確搜尋待辦事項
 
 ## 未來規劃
 
