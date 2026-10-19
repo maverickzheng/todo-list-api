@@ -1,6 +1,6 @@
 # yml檔範例
-# spring:
-#     application:
-#         name: note
-#     profiles:
-#         active: dev 
+spring:
+    application:
+        name: note
+    profiles:
+        active: dev 
